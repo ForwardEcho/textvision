@@ -50,7 +50,7 @@ export default function MatrixBackground() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full opacity-40"
+            className="absolute inset-0 w-full h-full opacity-100"
         />
     )
 }
