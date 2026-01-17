@@ -1,4 +1,30 @@
+'use client'
+
+import { useSession } from 'next-auth/react'
+import { useState } from 'react'
+
 export default function SettingsPage() {
+    const { data: session } = useSession()
+
+    const [name, setName] = useState(session?.user?.name ?? '')
+    const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState(false)
+
+    async function handleSave(e: React.FormEvent) {
+        e.preventDefault()
+        setLoading(true)
+        setSuccess(false)
+
+        const res = await fetch('/api/user/update', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name }),
+        })
+
+        setLoading(false)
+        if (res.ok) setSuccess(true)
+    }
+
     return (
         <>
             <div className="mb-12">
@@ -10,7 +36,7 @@ export default function SettingsPage() {
                 </p>
             </div>
 
-            <div className="max-w-xl space-y-8">
+            <form onSubmit={handleSave} className="max-w-xl space-y-8">
                 {/* PROFILE */}
                 <div className="bg-[#0a0a0a] border border-neutral-800 rounded-xl p-6">
                     <h3 className="font-medium mb-4">
@@ -20,16 +46,32 @@ export default function SettingsPage() {
                     <div className="space-y-4">
                         <input
                             type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             placeholder="Name"
                             className="w-full px-4 py-3 bg-black border border-neutral-700 rounded-md text-sm"
                         />
 
                         <input
                             type="email"
-                            placeholder="Email"
+                            value={session?.user?.email ?? ''}
                             disabled
                             className="w-full px-4 py-3 bg-black border border-neutral-800 rounded-md text-sm text-neutral-500 cursor-not-allowed"
                         />
+
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="mt-2 bg-white text-black px-5 py-2 rounded-md text-sm font-medium hover:bg-neutral-200 transition disabled:opacity-50"
+                        >
+                            {loading ? 'Saving...' : 'Save changes'}
+                        </button>
+
+                        {success && (
+                            <p className="text-sm text-green-500">
+                                Profile updated successfully
+                            </p>
+                        )}
                     </div>
                 </div>
 
@@ -39,11 +81,11 @@ export default function SettingsPage() {
                         Security
                     </h3>
 
-                    <button className="text-sm text-neutral-400 hover:text-white transition">
-                        Change password →
-                    </button>
+                    <p className="text-sm text-neutral-400">
+                        Password change coming soon
+                    </p>
                 </div>
-            </div>
+            </form>
         </>
     )
 }
