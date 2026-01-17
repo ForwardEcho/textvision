@@ -4,6 +4,7 @@ import SmoothScroll from '../../components/SmoothScroll'
 import PageTransition from '../../components/PageTransition'
 import Providers from "./providers";
 import type { ReactNode } from 'react'
+import Navbar from "../../components/Navbar";
 
 const inter = Inter({
     subsets: ['latin'],

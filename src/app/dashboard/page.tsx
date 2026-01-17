@@ -1,13 +1,12 @@
-'use client'
-
-import Navbar from '../../../components/Navbar'
+import Sidebar from '../../../components/Sidebar'
 
 export default function Dashboard() {
     return (
-        <div className="min-h-screen bg-black text-white">
-            <Navbar />
+        <div className="min-h-screen bg-black text-white flex">
+            <Sidebar />
 
-            <main className="pt-24 max-w-7xl mx-auto px-6">
+            {/* CONTENT */}
+            <main className="ml-64 flex-1 px-10 py-10">
                 {/* HEADER */}
                 <div className="mb-12">
                     <h1 className="text-3xl font-semibold tracking-tight">
@@ -26,7 +25,9 @@ export default function Dashboard() {
                         { label: 'Active Projects', value: '3' },
                     ].map((item, i) => (
                         <div
-                            key={i} className="bg-[#0a0a0a] border border-neutral-800 rounded-xl p-6">
+                            key={i}
+                            className="bg-[#0a0a0a] border border-neutral-800 rounded-xl p-6"
+                        >
                             <p className="text-xs uppercase tracking-widest text-neutral-500">
                                 {item.label}
                             </p>
@@ -60,7 +61,14 @@ export default function Dashboard() {
                         ].map((item, i) => (
                             <div
                                 key={i}
-                                className="bg-[#0a0a0a] border border-neutral-800 rounded-xl p-6 hover:border-neutral-600 transition cursor-pointer">
+                                className="
+                  bg-[#0a0a0a]
+                  border border-neutral-800
+                  rounded-xl p-6
+                  hover:border-neutral-600
+                  transition cursor-pointer
+                "
+                            >
                                 <h3 className="font-medium">
                                     {item.title}
                                 </h3>
@@ -73,7 +81,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* RECENT ACTIVITY */}
-                <div className="mb-20">
+                <div>
                     <h2 className="text-lg font-medium mb-4">
                         Recent Activity
                     </h2>
@@ -82,7 +90,7 @@ export default function Dashboard() {
                         {[
                             'OCR job completed',
                             'Text analysis processed',
-                            'New project created',
+                            'New projects created',
                         ].map((item, i) => (
                             <div
                                 key={i}
