@@ -1,5 +1,7 @@
 import MatrixBackground from '../../../components/MatrixBackground'
 import Navbar from '../../../components/Navbar'
+import Footer from "../../../components/Footer";
+
 
 export default function Docs() {
     return (
@@ -105,12 +107,7 @@ file: image.jpg`}
                 </section>
             </main>
 
-            {/* FOOTER */}
-            <footer className="border-t border-neutral-800 py-6">
-                <div className="max-w-6xl mx-auto px-6 text-center text-xs text-neutral-500">
-                    © 2026 TextVision. All rights reserved.
-                </div>
-            </footer>
+            <Footer/>
 
         </div>
     )

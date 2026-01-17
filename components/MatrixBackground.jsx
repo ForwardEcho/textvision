@@ -16,7 +16,7 @@ export default function MatrixBackground() {
         resize()
         window.addEventListener('resize', resize)
 
-        const letters = 'c0ded'
+        const letters = 'sentryx1234567890-_=+'
         const fontSize = 14
         const columns = canvas.width / fontSize
         const drops = Array(Math.floor(columns)).fill(1)
@@ -50,7 +50,7 @@ export default function MatrixBackground() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full opacity-100"
+            className="absolute inset-0 w-full h-full opacity-40"
         />
     )
 }
