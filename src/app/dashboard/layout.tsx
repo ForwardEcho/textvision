@@ -1,25 +1,21 @@
-import Sidebar from '../../../components/Sidebar';
-import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
-import { authOptions } from '@/lib/auth'
+import Sidebar from "../../../components/Sidebar";
 
-export default async function DashboardLayout({
-                                                  children,
-                                              }: {
+
+export default function DashboardLayout({
+                                            children,
+                                        }: {
     children: React.ReactNode
 }) {
-    const session = await getServerSession(authOptions)
-
-    if (!session) {
-        redirect('/login')
-    }
-
     return (
         <div className="min-h-screen bg-black text-white flex">
+            {/* SIDEBAR */}
             <Sidebar />
 
-            <main className="ml-64 flex-1 px-10 py-10">
-                {children}
+            {/* CONTENT */}
+            <main className="flex-1 px-4 sm:px-6 lg:px-10 py-8">
+                <div className="max-w-7xl mx-auto">
+                    {children}
+                </div>
             </main>
         </div>
     )

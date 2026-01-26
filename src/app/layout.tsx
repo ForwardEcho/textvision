@@ -21,6 +21,7 @@ export default function RootLayout({
         <html lang="en" className={inter.variable}>
         <body className="font-sans">
         <Providers>
+        <Navbar/>
         <SmoothScroll />
         <PageTransition>
             {children}
